@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção com Botões Pulsantes</title>
+
+    <style>
+        /* Estilos gerais da seção */
+        .pulsing-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            min-height: 100vh;
+            gap: 1.5rem;
+        }
+
+        /* Estilos dos botões */
+        .pulsing-button {
+            box-sizing: border-box;
+            width: 250px;
+            text-align: center;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background-image: linear-gradient(to right top, #e2a1a4, #d08e9f, #bb7e9b, #a26f97, #866293, #806198, #79619e, #6f61a4, #816ab7, #9473c9, #a87cdb, #be84ec);
+            background-size: 200% auto;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .pulsing-button:hover {
+            background-position: right center;
+            transform: scale(1.05);
+            animation-play-state: paused;
+        }
+
+        /* --- MUDANÇA PRINCIPAL AQUI --- */
+
+        /* Animação para o primeiro botão (duração maior) */
+        .pulsing-button:nth-child(1) {
+            animation: smooth-pulse 2.5s infinite ease-in-out;
+        }
+
+        /* Animação para o segundo botão (duração maior e delay ajustado) */
+        .pulsing-button:nth-child(2) {
+            animation: smooth-pulse 2.5s infinite ease-in-out;
+            animation-delay: 1.25s;
+        }
+
+        /* Animação de pulso SUAVE (sombra menor e mais transparente) */
+        @keyframes smooth-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(190, 132, 236, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(190, 132, 236, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(190, 132, 236, 0);
+            }
+        }
+
+
+        /* Media Query para Tablet e Desktop */
+        @media (min-width: 768px) {
+            .pulsing-section {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="pulsing-section">
+        <button class="pulsing-button">Que bom que tu veio</button>
+        <button class="pulsing-button">O que as Cílhudas dizem</button>
+    </section>
+
+    <script>
+        document.querySelectorAll('.pulsing-button').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Botão clicado!');
+                // Adicione aqui a funcionalidade desejada
+            });
+        });
+    </script>
+</body>
+
+</html>

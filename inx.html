@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empreendendo na Vida Real - Mentoria com Luana Costa</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ------------------- */
+    /* Reset & Global      */
+    /* ------------------- */
+    :root {
+      --lilac: #F5F3F7;
+      --nude: #FBF6F0;
+      --soft-pink: #F8E5E5;
+      --dark-text: #333333;
+      --light-text: #555555;
+      --accent-purple: #DCC7E8;
+      --font-family: 'Poppins', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--dark-text);
+      background-color: #FFFFFF;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    h2,
+    h3 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: var(--light-text);
+    }
+
+    h4 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    /* ------------------- */
+    /* Seções Específicas  */
+    /* ------------------- */
+
+    /* 1. Hero (Frase de Impacto) */
+    .hero {
+      background-color: var(--lilac);
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dark-text);
+    }
+
+    /* Título da Página */
+    .page-title-section {
+      padding-top: 50px;
+      padding-bottom: 30px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--light-text);
+      max-width: 600px;
+      margin: 10px auto 0;
+    }
+
+    /* 2. Sobre a Mentoria */
+    .about-mentorship {
+      background-color: var(--nude);
+      text-align: center;
+      font-size: 1.1rem;
+      padding: 50px 0;
+    }
+
+    .about-mentorship p {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* 3. Entregas (Cards) */
+    .deliverables {
+      background-color: #FFFFFF;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .card {
+      background-color: var(--lilac);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li {
+      margin-bottom: 10px;
+      padding-left: 25px;
+      position: relative;
+      color: var(--light-text);
+    }
+
+    .card ul li::before {
+      content: '•';
+      color: var(--accent-purple);
+      font-weight: bold;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -5px;
+    }
+
+    /* 4. Detalhes */
+    .details {
+      background-color: var(--nude);
+    }
+
+    .details-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .details ul {
+      list-style: none;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .details .price {
+      font-weight: 700;
+      margin-top: 15px;
+    }
+
+    /* 5. Sobre a Luana */
+    .about-luana {
+      padding-bottom: 80px;
+    }
+
+    .luana-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .luana-bio {
+      flex: 2;
+    }
+
+    .luana-bio p {
+      margin-bottom: 1.5em;
+      color: var(--light-text);
+    }
+
+    .luana-photo {
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .professional-photo {
+      width: 120px;
+      height: 120px;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      border: 3px solid var(--lilac);
+    }
+
+    .spontaneous-photo {
+      flex: 1;
+      max-width: 300px;
+      align-self: center;
+    }
+
+    /* CTA (Botão de Ação) */
+    .cta-button {
+      display: inline-block;
+      background-color: var(--dark-text);
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      background-color: #000000;
+    }
+
+    .desktop-cta {
+      display: inline-block;
+      /* Visível no desktop */
+    }
+
+    .mobile-cta {
+      display: none;
+      /* Escondido no desktop */
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--dark-text);
+      color: #FFFFFF;
+      font-size: 0.9rem;
+    }
+
+    /* ------------------- */
+    /* Responsividade      */
+    /* ------------------- */
+    @media (max-width: 992px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+
+      .luana-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .spontaneous-photo {
+        margin-top: 30px;
+        max-width: 80%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      section {
+        padding: 40px 0;
+      }
+
+      /* Esconde o CTA do corpo e mostra o fixo */
+      .desktop-cta {
+        display: none;
+      }
+
+      .mobile-cta {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+        padding: 20px;
+        z-index: 1000;
+      }
+
+      /* Adiciona espaço no final da página para não cobrir conteúdo */
+      body {
+        padding-bottom: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <h1>“Empreender com verdade é se vender sem se perder.”</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-title-section">
+      <div class="container">
+        <h2>Empreendendo na Vida Real</h2>
+        <p class="subtitle">Uma mentoria pra destravar criação, posicionamento e rotina de quem empreende de verdade.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-mentorship">
+      <div class="container">
+        <p>
+          Uma conversa real, de até 1h30, pra destravar o que tá te travando.
+          Não importa se tu tá começando ou já tem um negócio.
+          Essa mentoria é pra quem quer colocar pra rodar o que acredita — com direção, clareza, estratégia e
+          naturalidade.
+        </p>
+      </div>
+    </section>
+
+    <section class="deliverables">
+      <div class="container">
+        <h3>📌 Essa mentoria pode te ajudar a:</h3>
+        <div class="cards-container">
+          <div class="card">
+            <h4>🟪 Criação com autenticidade</h4>
+            <ul>
+              <li>Ter ideias mesmo com a cabeça cheia</li>
+              <li>Criar conteúdo com tua cara, sem forçar</li>
+              <li>Aprender o essencial de edição de vídeo</li>
+              <li>Usar tua rotina e vivência como combustível de criação</li>
+              <li>Receber dicas práticas de edição (CapCut, cortes, montagem e fluidez)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🟪 Fala, oratória e segurança</h4>
+            <ul>
+              <li>Falar com naturalidade e clareza nos vídeos</li>
+              <li>Parar de travar ou parecer “forçada”</li>
+              <li>Transmitir autoridade sem perder tua essência</li>
+              <li>Melhorar tua comunicação ao vivo e nos stories</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🟪 Direcionamento real e estratégico</h4>
+            <ul>
+              <li>Descobrir o que te trava — e destravar</li>
+              <li>Organizar prioridades e ações concretas</li>
+              <li>Alinhar tua rotina com conteúdo e posicionamento</li>
+              <li>Tornar teu negócio mais leve, funcional e sustentável</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details">
+      <div class="container">
+        <h3>📅 Detalhes práticos da mentoria</h3>
+        <div class="details-content">
+          <ul>
+            <li>Mentoria individual de até 2 horas</li>
+            <li>Pode ser online ou presencial</li>
+            <li class="price">Valor: R$ 230</li>
+          </ul>
+          <a href="https://ig.me/m/[SEU_INSTAGRAM_AQUI]" target="_blank" class="cta-button desktop-cta">👉 Quero agendar
+            minha mentoria</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-luana">
+      <div class="container">
+        <h3>🧍‍♀️ Quem está por trás</h3>
+        <div class="luana-content">
+          <div class="luana-bio">
+            <img src="https://via.placeholder.com/150/DCC7E8/333333?text=Foto+Profissional"
+              alt="Foto profissional de Luana Costa" class="luana-photo professional-photo">
+            <p><strong>Sou Luana Costa.</strong><br>
+              Sou lash designer, microempreendedora, formada em Administração de Empresas e Gestão de Recursos Humanos.
+              Tenho pós-graduação em Gestão de Pessoas.
+              Mas antes de tudo isso, eu sou alguém que decidiu criar um negócio do zero, com o que tinha — e que vive
+              todos os dias equilibrando conteúdo, atendimento, decisões, boletos e coragem.</p>
+            <p>Eu não vendo fórmula pronta.<br>
+              O que eu ensino é o que eu faço.<br>
+              A minha vida é empreender com verdade — e comunicar isso de um jeito que não me anule, que não me
+              transforme em alguém que eu não sou.
+              E é isso que eu quero ajudar outras pessoas a fazer também.</p>
+          </div>
+          <img src="https://via.placeholder.com/300x400/F5F3F7/AAAAAA?text=Foto+Espontânea"
+            alt="Foto espontânea de Luana Costa trabalhando" class="luana-photo spontaneous-photo">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 hi.luana | Todos os direitos reservados.</p>
+  </footer>
+
+  <a href="https://ig.me/m/[SEU_INSTAGRAM_AQUI]" target="_blank" class="cta-button mobile-cta">👉 Quero agendar minha
+    mentoria</a>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+/* --- ESTILOS DA SEÇÃO PRINCIPAL E DECORAÇÃO --- */
+
+.main-section {
+  position: relative;
+  /* Essencial para posicionar os círculos filhos */
+  display: grid;
+  place-items: center;
+  /* Uma forma moderna de centralizar o conteúdo */
+  min-height: 40vh;
+  background-color: #f7f5ff;
+  /* Nova cor de fundo da section */
+  overflow: hidden;
+  padding-bottom: 5rem;
+  /* Essencial para "cortar" os círculos que saem da borda */
+}
+
+/* Círculo 1 (incompleto, na esquerda) - criado a partir da section */
+.main-section::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 220px;
+  height: 220px;
+  background: rgba(134, 98, 147, 0.1);
+  /* background: #e2a1a425; */
+  border-radius: 50%;
+  top: 50%;
+  left: -10px;
+  transform: translate(-50%, -50%);
+  /* Posiciona metade para fora */
+}
+
+/* Círculo 2 (canto superior direito) - criado a partir da section */
+.main-section::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 150px;
+  height: 150px;
+  background: rgba(134, 98, 147, 0.08);
+  border-radius: 50%;
+  top: -0px;
+  right: -60px;
+}
+
+/* Círculo 3 (canto inferior esquerdo) - criado a partir do wrapper do conteúdo */
+.content-wrapper::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 70px;
+  height: 70px;
+  background: rgba(134, 98, 147, 0.09);
+  border-radius: 50%;
+  bottom: -90px;
+  left: 100px;
+}
+
+/* --- ESTILOS DO CONTEÚDO (BOTÕES) --- */
+
+.content-wrapper {
+  position: relative;
+  /* Garante que fique acima dos círculos */
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  /* Padrão mobile: botões um abaixo do outro */
+  align-items: center;
+  gap: 1.5rem;
+  /* Espaçamento entre os botões */
+}
+
+/* Estilos dos botões (sem alterações) */
+.pulsing-button {
+  box-sizing: border-box;
+  width: 250px;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-image: linear-gradient(to right top, #e2a1a4, #d08e9f, #bb7e9b, #a26f97, #866293, #806198, #79619e, #6f61a4, #816ab7, #9473c9, #a87cdb, #be84ec);
+  background-size: 200% auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.pulsing-button:hover {
+  background-position: right center;
+  transform: scale(1.05);
+  animation-play-state: paused;
+}
+
+/* Animações dos botões (sem alterações) */
+.pulsing-button:nth-child(1) {
+  animation: smooth-pulse 2.5s infinite ease-in-out;
+}
+
+.pulsing-button:nth-child(2) {
+  animation: smooth-pulse 2.5s infinite ease-in-out;
+  animation-delay: 1.25s;
+}
+
+@keyframes smooth-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(190, 132, 236, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(190, 132, 236, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(190, 132, 236, 0);
+  }
+}
+
+/* Media Query para Tablet e Desktop */
+@media (min-width: 768px) {
+  .content-wrapper {
+    flex-direction: row;
+    /* Botões lado a lado em telas maiores */
+  }
+}

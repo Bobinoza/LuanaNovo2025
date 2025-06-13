@@ -1,0 +1,118 @@
+/* Estilos Gerais */
+/* body {
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+} */
+
+/* Seção de Avaliações */
+.avaliacoes-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Título (Opcional, mas recomendado) */
+.avaliacoes-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: #372580;
+}
+
+/* Contêiner do Carrossel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Essencial para o carrossel */
+}
+
+/* Wrapper dos Slides */
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Estilo de cada Slide */
+.carousel-slide {
+  min-width: 100%;
+  /* Em mobile, cada slide ocupa 100% */
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.carousel-slide img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botões de Navegação */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.prev-btn {
+  left: 15px;
+}
+
+.next-btn {
+  right: 15px;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Link para Todas as Avaliações */
+.link-avaliacoes {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #372580;
+  text-decoration: underline;
+}
+
+.link-avaliacoes:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* ---- Media Queries para Responsividade ---- */
+
+/* Tablet */
+@media (min-width: 768px) {
+  .carousel-slide {
+    min-width: calc(100% / 3);
+    /* 3 slides por vez */
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .carousel-slide {
+    min-width: calc(100% / 3);
+    /* Mantém 3 slides por vez */
+  }
+}
