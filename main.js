@@ -261,44 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   });
-  // const contentServicesItems = document.querySelectorAll('.content-services');
-
-  // contentServicesItems.forEach(item => {
-  //   const header = item.querySelector('.content-services-header');
-  //   const expandableContent = item.querySelector('.expandable-content');
-  //   const arrow = header ? header.querySelector('.dropdown-arrow') : null;
-
-  //   if (header && expandableContent) {
-  //     header.addEventListener('click', () => {
-  //       const isOpen = item.classList.contains('service-open');
-
-  //       // Comportamento de acordeão opcional para .content-services:
-  //       // Se quiser que apenas um .content-services fique aberto por vez, descomente abaixo.
-  //       if (!isOpen) { // Apenas executa se estiver abrindo um novo
-  //         contentServicesItems.forEach(otherItem => {
-  //           if (otherItem !== item && otherItem.classList.contains('service-open')) {
-  //             const otherContent = otherItem.querySelector('.expandable-content');
-  //             const otherArrow = otherItem.querySelector('.content-services-header .dropdown-arrow');
-  //             if (otherContent) otherContent.style.maxHeight = null;
-  //             otherItem.classList.remove('service-open');
-  //             if (otherArrow) otherArrow.textContent = '▼';
-  //           }
-  //         });
-  //       }
-
-
-  //       if (isOpen) {
-  //         expandableContent.style.maxHeight = null;
-  //         item.classList.remove('service-open');
-  //         if (arrow) arrow.textContent = '▼';
-  //       } else {
-  //         expandableContent.style.maxHeight = expandableContent.scrollHeight + 'px';
-  //         item.classList.add('service-open');
-  //         if (arrow) arrow.textContent = '▲';
-  //       }
-  //     });
-  //   }
-  // });
 
   // --- LÓGICA DO CARROSSEL (APLICÁVEL A TODOS OS CARROSSÉIS) ---
   const allCarousels = document.querySelectorAll('.carousel-container');

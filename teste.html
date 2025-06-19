@@ -4,94 +4,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seção com Botões Pulsantes</title>
-
+    <title>Modal de Avaliações</title>
     <style>
-        /* Estilos gerais da seção */
-        .pulsing-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            min-height: 100vh;
-            gap: 1.5rem;
+        /* Estilos da sua Home (Exemplo) */
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
         }
 
-        /* Estilos dos botões */
-        .pulsing-button {
-            box-sizing: border-box;
-            width: 250px;
-            text-align: center;
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
+        #openModalBtn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: #372580;
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
+        }
+
+        /* ---------------------------------- */
+        /* ---- 1. ESTILOS PARA O MODAL ---- */
+        /* ---------------------------------- */
+
+        /* O contêiner do modal (fundo escuro) */
+        .modal {
+            display: none;
+            /* Escondido por padrão */
+            position: fixed;
+            /* Fica fixo na tela e cobre todo o conteúdo */
+            z-index: 1000;
+            /* Garante que fique na frente de tudo */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            /* Permite rolagem se o conteúdo for maior que a tela */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Fundo preto semi-transparente */
+        }
+
+        /* O conteúdo do modal */
+        .modal-content {
+            background-color: #fff;
+            margin: 0;
+            /* Remove margens para ocupar 100% */
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            /* Garante que o padding não aumente o tamanho total */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* O botão de fechar (X) */
+        .close-btn {
+            color: #333;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            font-weight: bold;
             cursor: pointer;
-            background-image: linear-gradient(to right top, #e2a1a4, #d08e9f, #bb7e9b, #a26f97, #866293, #806198, #79619e, #6f61a4, #816ab7, #9473c9, #a87cdb, #be84ec);
-            background-size: 200% auto;
-            transition: all 0.3s ease-in-out;
+            z-index: 1001;
+            /* Garante que o botão de fechar fique acima do conteúdo do carrossel */
         }
 
-        .pulsing-button:hover {
-            background-position: right center;
-            transform: scale(1.05);
-            animation-play-state: paused;
-        }
-
-        /* --- MUDANÇA PRINCIPAL AQUI --- */
-
-        /* Animação para o primeiro botão (duração maior) */
-        .pulsing-button:nth-child(1) {
-            animation: smooth-pulse 2.5s infinite ease-in-out;
-        }
-
-        /* Animação para o segundo botão (duração maior e delay ajustado) */
-        .pulsing-button:nth-child(2) {
-            animation: smooth-pulse 2.5s infinite ease-in-out;
-            animation-delay: 1.25s;
-        }
-
-        /* Animação de pulso SUAVE (sombra menor e mais transparente) */
-        @keyframes smooth-pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(190, 132, 236, 0.5);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(190, 132, 236, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(190, 132, 236, 0);
-            }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #000;
         }
 
 
-        /* Media Query para Tablet e Desktop */
+        /* ----------------------------------------------------------------- */
+        /* ---- 2. SEUS ESTILOS PARA A SEÇÃO DE AVALIAÇÕES (COPIADOS) ---- */
+        /* ----------------------------------------------------------------- */
+
+        .avaliacoes-section {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .avaliacoes-section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: #372580;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .link-avaliacoes {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #372580;
+            text-decoration: underline;
+        }
+
+        .link-avaliacoes:hover {
+            text-decoration: underline;
+            color: #333;
+        }
+
+        /* ---- Media Queries para Responsividade ---- */
         @media (min-width: 768px) {
-            .pulsing-section {
-                flex-direction: row;
+            .carousel-slide {
+                min-width: calc(100% / 3);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-slide {
+                min-width: calc(100% / 3);
             }
         }
     </style>
 </head>
 
 <body>
-    <section class="pulsing-section">
-        <button class="pulsing-button">Que bom que tu veio</button>
-        <button class="pulsing-button">O que as Cílhudas dizem</button>
-    </section>
+
+    <h1>Minha Página Principal</h1>
+    <p>Clique no botão abaixo para ver as avaliações.</p>
+    <button id="openModalBtn">Ver Avaliações das Cílhudas</button>
+
+
+    <div id="avaliacoesModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-btn">&times;</span>
+
+            <section class="avaliacoes-section" id="avaliacaoSection">
+                <h2>O que as Cílhudas dizem:</h2>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-slide">
+                            <img src="./assets/img/imgAvaliacao/avaliacao1.jpg"
+                                alt="Avaliação da cliente Jessica Araujo">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/img/imgAvaliacao/avaliacao2.jpg"
+                                alt="Avaliação da cliente Carolina Gomes">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/img/imgAvaliacao/avaliacao3.jpg" alt="Avaliação da cliente Ana Lidia">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/img/imgAvaliacao/avaliacao4.jpg"
+                                alt="Avaliação da cliente Ariane Ferreira">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/img/imgAvaliacao/avaliacao5.jpg"
+                                alt="Avaliação da cliente Julia Garim-Dias">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="./assets/img/imgAvaliacao/avaliacao6.jpg"
+                                alt="Avaliação da cliente Jenifer Prado">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev-btn">❮</button>
+                    <button class="carousel-btn next-btn">❯</button>
+                </div>
+                <a target="_blank"
+                    href="https://www.google.com/maps/place/HI+LUANA+EST%C3%9ADIO/@-30.0456739,-51.2277206,1367m/data=!3m1!1e3!4m8!3m7!1s0x951979932dd4f949:0xcae21721de60240d!8m2!3d-30.0456739!4d-51.2277206!9m1!1b1!16s%2Fg%2F11xcr1g7qg?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D"
+                    class="link-avaliacoes">Ver todas as avaliações no Google →</a>
+            </section>
+
+        </div>
+    </div>
 
     <script>
-        document.querySelectorAll('.pulsing-button').forEach(button => {
-            button.addEventListener('click', () => {
-                alert('Botão clicado!');
-                // Adicione aqui a funcionalidade desejada
+        // Aguarda o carregamento completo do DOM
+        document.addEventListener('DOMContentLoaded', function () {
+
+            /* ---------------------------------- */
+            /* ---- 4. LÓGICA PARA O MODAL ---- */
+            /* ---------------------------------- */
+
+            // Pega os elementos do DOM
+            const modal = document.getElementById("avaliacoesModal");
+            const btnOpen = document.getElementById("openModalBtn");
+            const btnClose = document.querySelector(".close-btn");
+
+            // Quando o usuário clicar no botão, abre o modal
+            btnOpen.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // Quando o usuário clicar no <span> (x), fecha o modal
+            btnClose.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // Quando o usuário clicar fora do conteúdo do modal, fecha o modal
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+
+            /* ----------------------------------------------------------------- */
+            /* ---- 5. SEU SCRIPT PARA O CARROSSEL (COPIADO INTEGRALMENTE) ---- */
+            /* ----------------------------------------------------------------- */
+
+            // NOTA: Os seletores abaixo buscam dentro do documento inteiro.
+            // Como os elementos do carrossel só existem dentro do modal,
+            // o código vai funcionar perfeitamente quando o modal estiver visível.
+            const wrapper = document.querySelector('.carousel-wrapper');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            let currentIndex = 0;
+            let itemsPerView = 1; // Padrão para mobile
+
+            const updateItemsPerView = () => {
+                if (window.innerWidth >= 1024) {
+                    itemsPerView = 3;
+                } else if (window.innerWidth >= 768) {
+                    itemsPerView = 3;
+                } else {
+                    itemsPerView = 1;
+                }
+            };
+
+            const updateTotalSlides = () => {
+                return wrapper.children.length;
+            };
+
+            const updateCarousel = () => {
+                const totalSlides = updateTotalSlides();
+
+                if (currentIndex > totalSlides - itemsPerView) {
+                    currentIndex = totalSlides - itemsPerView;
+                }
+                if (currentIndex < 0) {
+                    currentIndex = 0;
+                }
+                const offset = -currentIndex * (100 / itemsPerView);
+                // Aqui usamos 100% dividido por itemsPerView para calcular o deslocamento
+                // em vez de 'slideWidth' para simplificar, já que os slides têm min-width em %.
+                wrapper.style.transform = `translateX(calc(${offset}% / ${itemsPerView}))`;
+            };
+
+            nextBtn.addEventListener('click', () => {
+                const totalSlides = updateTotalSlides();
+                if (currentIndex < totalSlides - itemsPerView) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // Volta ao início
+                }
+                updateCarousel();
             });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    const totalSlides = updateTotalSlides();
+                    currentIndex = totalSlides - itemsPerView; // Vai para o fim
+                }
+                updateCarousel();
+            });
+
+            window.addEventListener('resize', () => {
+                updateItemsPerView();
+                updateCarousel();
+            });
+
+            // Inicializa o carrossel
+            updateItemsPerView();
+            updateCarousel();
         });
     </script>
+
 </body>
 
 </html>
